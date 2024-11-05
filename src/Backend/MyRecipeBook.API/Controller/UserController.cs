@@ -16,6 +16,7 @@ namespace MyRecipeBook.API.Controller
         [ProducesResponseType(typeof(ResponseRegisteredUserJson), StatusCodes.Status201Created)]
         public IActionResult Register(RequestRegisterUserJson request)
         {
+            
             return Created();
         }
     }

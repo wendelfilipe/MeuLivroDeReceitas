@@ -11,9 +11,17 @@ public class CultureMiddleware
     }
     public async Task Invoke(HttpContext context)
     {
+        var supportLanguages = CultureInfo.GetCultures(CultureTypes.AllCultures);
+
         var requestCulture = context.Request.Headers.AcceptLanguage.FirstOrDefault();
         
-        var cultureInfo = new CultureInfo(requestCulture);
+        var cultureInfo = new CultureInfo("en");
+
+        if(!string.IsNullOrWhiteSpace(requestCulture) 
+            && supportLanguages.Any(c => c.Name.Equals(requestCulture)))
+        {
+            cultureInfo = new CultureInfo(requestCulture);
+        }
 
         CultureInfo.CurrentCulture = cultureInfo;
         CultureInfo.CurrentUICulture = cultureInfo;

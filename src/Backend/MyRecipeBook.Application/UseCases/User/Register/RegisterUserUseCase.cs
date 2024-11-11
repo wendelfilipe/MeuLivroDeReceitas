@@ -1,5 +1,6 @@
 using MyRecipeBook.Communication;
 using MyRecipeBook.Communication.Responses;
+using MyRecipeBook.Exceptions.ExceptionsBase;
 
 namespace MyRecipeBook.Application.UseCases.User.Register
 {
@@ -34,7 +35,7 @@ namespace MyRecipeBook.Application.UseCases.User.Register
            {
                 var errorMessages = result.Errors.Select(e => e.ErrorMessage);
 
-                throw new Exception();
+                throw new MyRecipeBookException();
            }
         }
     }

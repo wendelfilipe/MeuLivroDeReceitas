@@ -33,9 +33,9 @@ namespace MyRecipeBook.Application.UseCases.User.Register
 
            if(!result.IsValid)
            {
-                var errorMessages = result.Errors.Select(e => e.ErrorMessage);
+                var errorMessages = result.Errors.Select(e => e.ErrorMessage).ToList();
 
-                throw new MyRecipeBookException();
+                throw new ErrorOnValidationException(errorMessages);
            }
         }
     }

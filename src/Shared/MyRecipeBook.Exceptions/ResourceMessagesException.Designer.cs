@@ -95,5 +95,14 @@ namespace MyRecipeBook.Exceptions {
                 return ResourceManager.GetString("PASSWORD_INVALID", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown error.
+        /// </summary>
+        public static string UNKKOWN_ERROR {
+            get {
+                return ResourceManager.GetString("UNKKOWN_ERROR", resourceCulture);
+            }
+        }
     }
 }

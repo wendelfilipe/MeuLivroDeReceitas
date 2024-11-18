@@ -1,20 +1,39 @@
+using MyRecipeBook.Application.Services.AutoMapper;
+using MyRecipeBook.Application.Services.Criptography;
 using MyRecipeBook.Communication;
 using MyRecipeBook.Communication.Responses;
+using MyRecipeBook.Domain.Entities;
+using MyRecipeBook.Domain.Repositories.User;
 using MyRecipeBook.Exceptions.ExceptionsBase;
 
 namespace MyRecipeBook.Application.UseCases.User.Register
 {
     public class RegisterUserUseCase
     {
-        public ResponseRegisteredUserJson Execute(RequestRegisterUserJson request)
+        private readonly IUserWriteOnlyRepository _writeOnlyRepository;
+        private readonly IUserReadOnlyRepository _readOnlyRepository;
+        public async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request)
         {
 
-            Validate(request);
-            // Validar a request
+            // Criptografia da senha
+            var criptografiaDeSenha = new PasswordEncripter();
 
             // Mapear a request em uma entidade
+            var autoMapper = new AutoMapper.MapperConfiguration(options =>
+            {
+                options.AddProfile(new AutoMapping());
+            }).CreateMapper();
 
-            // Criptografia da senha
+            var user = autoMapper.Map<Domain.Entities.User>(request);
+
+            user.Password = criptografiaDeSenha.Encrypt(request.Password);
+
+           await _writeOnlyRepository.Add(user);
+
+            // Validar a request
+            Validate(request);
+
+
 
             // Salvar no banco de dados
 

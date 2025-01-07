@@ -9,10 +9,14 @@ namespace MyRecipeBook.Application.Services.Criptography
 {
     public class PasswordEncripter
     {
+        private readonly string additionalKey;
+        public PasswordEncripter(string additionalKey)
+        {
+            this.additionalKey = additionalKey;
+        }
         public string Encrypt(string password)
         {
-            var chaveAdicional = "ABC";
-            var newPassword = $"{password}{chaveAdicional}";
+            var newPassword = $"{password}{additionalKey}";
 
             var bytes = Encoding.UTF8.GetBytes(newPassword);
             var hasBytes = SHA512.HashData(bytes);

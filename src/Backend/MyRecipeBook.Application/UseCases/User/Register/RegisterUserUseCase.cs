@@ -1,39 +1,50 @@
+using AutoMapper;
 using MyRecipeBook.Application.Services.AutoMapper;
 using MyRecipeBook.Application.Services.Criptography;
 using MyRecipeBook.Communication;
 using MyRecipeBook.Communication.Responses;
 using MyRecipeBook.Domain.Entities;
+using MyRecipeBook.Domain.Repositories;
 using MyRecipeBook.Domain.Repositories.User;
+using MyRecipeBook.Exceptions;
 using MyRecipeBook.Exceptions.ExceptionsBase;
 
 namespace MyRecipeBook.Application.UseCases.User.Register
 {
-    public class RegisterUserUseCase
+    public class RegisterUserUseCase : IRegisterUserUseCase
     {
-        private readonly IUserWriteOnlyRepository _writeOnlyRepository;
-        private readonly IUserReadOnlyRepository _readOnlyRepository;
+        private readonly IUserWriteOnlyRepository writeOnlyRepository;
+        private readonly IUserReadOnlyRepository readOnlyRepository;
+        private readonly IMapper mapper;
+        private readonly IUnitOfWork unitOfWork;
+        private readonly PasswordEncripter passwordEncripter;
+
+        public RegisterUserUseCase(
+            IUserReadOnlyRepository readOnlyRepository, 
+            IUserWriteOnlyRepository writeOnlyRepository,
+            IMapper mapper,
+            IUnitOfWork unitOfWork,
+            PasswordEncripter passwordEncripter)
+        {
+            this.writeOnlyRepository = writeOnlyRepository;
+            this.readOnlyRepository = readOnlyRepository;
+            this.mapper = mapper;
+            this.unitOfWork = unitOfWork;
+            this.passwordEncripter = passwordEncripter;
+        }
         public async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request)
         {
+            // Validar a request
+            await Validate(request);
 
             // Criptografia da senha
-            var criptografiaDeSenha = new PasswordEncripter();
 
-            // Mapear a request em uma entidade
-            var autoMapper = new AutoMapper.MapperConfiguration(options =>
-            {
-                options.AddProfile(new AutoMapping());
-            }).CreateMapper();
+            var user = mapper.Map<Domain.Entities.User>(request);
+            user.Password = passwordEncripter.Encrypt(request.Password);
 
-            var user = autoMapper.Map<Domain.Entities.User>(request);
+            await writeOnlyRepository.Add(user);
 
-            user.Password = criptografiaDeSenha.Encrypt(request.Password);
-
-           await _writeOnlyRepository.Add(user);
-
-            // Validar a request
-            Validate(request);
-
-
+            await unitOfWork.Commit();
 
             // Salvar no banco de dados
 
@@ -44,18 +55,25 @@ namespace MyRecipeBook.Application.UseCases.User.Register
 
         }
 
-        public void Validate(RequestRegisterUserJson request)
+        private async Task Validate(RequestRegisterUserJson request)
         {
-           var validator = new RegisterUserValidator();
+            var validator = new RegisterUserValidator();
 
-           var result = validator.Validate(request);
+            var result = validator.Validate(request);
 
-           if(!result.IsValid)
-           {
+            var emailExist = await readOnlyRepository.ExistActiveUserWithEmail(request.Email);
+
+            if (emailExist)
+            {
+                result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceMessagesException.EMAIL_ALREDY_REGISTED));
+            }
+
+            if(!result.IsValid)
+            {
                 var errorMessages = result.Errors.Select(e => e.ErrorMessage).ToList();
 
                 throw new ErrorOnValidationException(errorMessages);
-           }
+            }
         }
     }
 }

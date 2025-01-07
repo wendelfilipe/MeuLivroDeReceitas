@@ -7,27 +7,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6AACB1BF-DF9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{32C260FC-47B7-4F39-B307-9251DA3C4F58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRecipeBook.API", "src\Backend\MyRecipeBook.API\MyRecipeBook.API.csproj", "{38395DE3-4CB0-4636-8C1A-B3B0D03E201B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyRecipeBook.API", "src\Backend\MyRecipeBook.API\MyRecipeBook.API.csproj", "{38395DE3-4CB0-4636-8C1A-B3B0D03E201B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRecipeBook.Application", "src\Backend\MyRecipeBook.Application\MyRecipeBook.Application.csproj", "{40CC2AD7-5313-479A-AF13-4A897A726F5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyRecipeBook.Application", "src\Backend\MyRecipeBook.Application\MyRecipeBook.Application.csproj", "{40CC2AD7-5313-479A-AF13-4A897A726F5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRecipeBook.Domain", "src\Backend\MyRecipeBook.Domain\MyRecipeBook.Domain.csproj", "{AED6DA41-5511-49E2-927E-86F6578A8177}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyRecipeBook.Domain", "src\Backend\MyRecipeBook.Domain\MyRecipeBook.Domain.csproj", "{AED6DA41-5511-49E2-927E-86F6578A8177}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRecipeBook.Infrastructure", "src\Backend\MyRecipeBook.Infrastructure\MyRecipeBook.Infrastructure.csproj", "{2D42C67D-C306-49AA-9D36-45B4A0328E03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyRecipeBook.Infrastructure", "src\Backend\MyRecipeBook.Infrastructure\MyRecipeBook.Infrastructure.csproj", "{2D42C67D-C306-49AA-9D36-45B4A0328E03}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{41BA88A7-8412-48C5-932D-67993229B054}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRecipeBook.Communication", "src\Shared\MyRecipeBook.Communication\MyRecipeBook.Communication.csproj", "{E353CECD-F8AF-4EAD-800F-4CB4027F570D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyRecipeBook.Communication", "src\Shared\MyRecipeBook.Communication\MyRecipeBook.Communication.csproj", "{E353CECD-F8AF-4EAD-800F-4CB4027F570D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRecipeBook.Exceptions", "src\Shared\MyRecipeBook.Exceptions\MyRecipeBook.Exceptions.csproj", "{15D2CB5F-0362-4FD3-B04C-6507747B8238}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyRecipeBook.Exceptions", "src\Shared\MyRecipeBook.Exceptions\MyRecipeBook.Exceptions.csproj", "{15D2CB5F-0362-4FD3-B04C-6507747B8238}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{38979122-F746-48A7-A078-4E252356AF1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{38395DE3-4CB0-4636-8C1A-B3B0D03E201B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -55,6 +54,9 @@ Global
 		{15D2CB5F-0362-4FD3-B04C-6507747B8238}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15D2CB5F-0362-4FD3-B04C-6507747B8238}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{32C260FC-47B7-4F39-B307-9251DA3C4F58} = {6AACB1BF-DF9B-49BC-BDC9-F5A03F1AD9AE}
 		{38395DE3-4CB0-4636-8C1A-B3B0D03E201B} = {32C260FC-47B7-4F39-B307-9251DA3C4F58}
@@ -64,5 +66,6 @@ Global
 		{41BA88A7-8412-48C5-932D-67993229B054} = {6AACB1BF-DF9B-49BC-BDC9-F5A03F1AD9AE}
 		{E353CECD-F8AF-4EAD-800F-4CB4027F570D} = {41BA88A7-8412-48C5-932D-67993229B054}
 		{15D2CB5F-0362-4FD3-B04C-6507747B8238} = {41BA88A7-8412-48C5-932D-67993229B054}
+		{38979122-F746-48A7-A078-4E252356AF1F} = {6AACB1BF-DF9B-49BC-BDC9-F5A03F1AD9AE}
 	EndGlobalSection
 EndGlobal

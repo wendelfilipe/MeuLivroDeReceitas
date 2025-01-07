@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EMAIL_ALREDY_REGISTED" xml:space="preserve">
+    <value>Email alredy exist.</value>
+  </data>
   <data name="EMAIL_EMPTY" xml:space="preserve">
     <value>The email cannt be empty.</value>
   </data>

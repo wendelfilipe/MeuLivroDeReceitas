@@ -61,6 +61,15 @@ namespace MyRecipeBook.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email alredy exist..
+        /// </summary>
+        public static string EMAIL_ALREDY_REGISTED {
+            get {
+                return ResourceManager.GetString("EMAIL_ALREDY_REGISTED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The email cannt be empty..
         /// </summary>
         public static string EMAIL_EMPTY {
